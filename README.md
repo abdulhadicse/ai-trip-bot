@@ -1,36 +1,8 @@
-# **Full-Stack AI Trip Bot** 🌍✨
-A smart, AI-powered trip bot application built with **React**, **Gemini AI**, **Firebase**, and **TailwindCSS**. This project provides a seamless and intuitive experience for users to plan, organize, and optimize their trips using AI-driven recommendations.
+# React + Vite
 
-## **Features** 🚀
-✅ **AI-Powered Trip Planning** – Get smart travel recommendations using Gemini AI  
-✅ **Real-Time Data Storage** – Sync and store trip details with Firebase  
-✅ **User Authentication** – Secure login and account management with Firebase Auth  
-✅ **Interactive UI** – Responsive and modern design with TailwindCSS  
-✅ **Itinerary Management** – Customize and save trip schedules effortlessly  
-✅ **Map & Location Services** – Integrate maps for better navigation  
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## **Tech Stack** 🛠️
-- **Frontend**: React, TailwindCSS  
-- **AI Integration**: Gemini AI  
-- **Backend & Database**: Firebase (Firestore, Auth)  
+Currently, two official plugins are available:
 
-## **Installation & Setup** ⚡
-```bash
-# Clone the repository
-git clone https://github.com/abdulhadicse/ai-trip-bot.git
-
-# Navigate to the project folder
-cd ai-trip-bot
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm start
-```
-
-## **Contributing** 🤝
-We welcome contributions! Feel free to fork this repository, submit pull requests, or report issues.
-
-## **License** 📜
-This project is licensed under the [MIT License](LICENSE).
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
