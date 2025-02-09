@@ -8,7 +8,7 @@ const Hero = () => {
             <h1 className="font-extrabold text-[50px] text-center mt-16">
                 <span className="text-[#f56551]">
                     Discover Your Next Trip with AI:
-                </span>{" "}
+                </span>
                 Your Perfect Trip Awaits!
             </h1>
             <p className="text-xl text-gray-500 text-center">
