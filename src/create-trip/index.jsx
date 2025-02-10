@@ -1,12 +1,17 @@
 import { useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { Input } from "@/components/ui/input";
-import { SelectTravelsList, SelectBudgetOptions } from "@/constants/options";
+import {
+    SelectTravelsList,
+    SelectBudgetOptions,
+    AI_PROMPT,
+} from "@/constants/options";
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+import { chatSession } from "@/services/AIModel";
 
 const CreateTrip = () => {
     const [place, setPlace] = useState();
-
     const [tripData, setTripData] = useState([]);
 
     const handleTripData = (name, value) => {
@@ -14,6 +19,37 @@ const CreateTrip = () => {
             ...tripData,
             [name]: value,
         });
+    };
+
+    const handleGenerateTrip = async () => {
+        if (
+            !tripData?.traveler ||
+            !tripData?.budget ||
+            !tripData?.noOfDays ||
+            !tripData?.location 
+        ) {
+            toast("Please fill up all fields.", {
+                action: {
+                    label: "Undo",
+                    onClick: () => console.log("Undo"),
+                },
+            });
+
+            return;
+        }
+
+        const FINAL_PROMPT = AI_PROMPT.replace(
+            "{location}",
+            tripData?.location?.label
+        )
+            .replace("{totalDays}", tripData?.noOfDays)
+            .replace("{traveler}", tripData?.traveler)
+            .replace("{budget}", tripData?.budget)
+            .replace("{totalDays}", tripData?.noOfDays);
+
+        const result = await chatSession.sendMessage(FINAL_PROMPT);
+
+        console.log(result?.response?.text());
     };
 
     return (
@@ -70,9 +106,12 @@ const CreateTrip = () => {
                         {SelectBudgetOptions.map((item, index) => (
                             <div
                                 key={index}
-                                className="p-4 border cursor-pointer rounded-lg"
+                                className={`p-4 border cursor-pointer rounded-lg hover:shadow-lg ${
+                                    tripData?.budget == item.title &&
+                                    "shadow-lg border-black"
+                                }`}
                                 onClick={() =>
-                                    handleTripData("budget", item.people)
+                                    handleTripData("budget", item.title)
                                 }
                             >
                                 <h2 className="text-4xl">{item.icon}</h2>
@@ -97,7 +136,10 @@ const CreateTrip = () => {
                         {SelectTravelsList.map((item, index) => (
                             <div
                                 key={index}
-                                className="p-4 border cursor-pointer rounded-lg"
+                                className={`p-4 border cursor-pointer rounded-lg hover:shadow-lg ${
+                                    tripData?.traveler == item.title &&
+                                    "shadow-lg border-black"
+                                }`}
                                 onClick={() =>
                                     handleTripData("traveler", item.title)
                                 }
@@ -116,7 +158,7 @@ const CreateTrip = () => {
             </div>
 
             <div className="my-20 flex justify-end">
-                <Button>Generate Trip</Button>
+                <Button onClick={handleGenerateTrip}>Generate Trip</Button>
             </div>
         </div>
     );
