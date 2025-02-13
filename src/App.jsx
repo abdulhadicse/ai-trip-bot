@@ -6,8 +6,6 @@ function App() {
     return (
         <>
             <Hero/>
-            <h1>Vite + React</h1>
-            <Button>Click Here</Button>
         </>
     );
 }
