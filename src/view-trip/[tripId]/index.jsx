@@ -6,6 +6,7 @@ import { db } from "@/services/firebaseConfig";
 import { toast } from "sonner";
 import InfoSection from "./components/InfoSection";
 import Hotels from "./components/Hotels";
+import PlacesToVisit from "./components/PlacesToVisit";
 
 const ViewTrip = () => {
     const { tripId } = useParams();
@@ -19,7 +20,6 @@ const ViewTrip = () => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            console.log("Dodcument:", docSnap.data());
             setTrip(docSnap.data());
         } else {
             console.log("No Such Document");
@@ -35,6 +35,7 @@ const ViewTrip = () => {
         <div className="p-10 md:px-20 lg:px-44 xl:px-56">
             <InfoSection trip={trip} />
             <Hotels trip={trip}/>
+            <PlacesToVisit trip={trip}/>
         </div>
     );
 };

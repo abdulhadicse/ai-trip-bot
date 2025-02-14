@@ -13,15 +13,14 @@ const Hotels = ({ trip }) => {
                     <Link
                         to={
                             "https://www.google.com/maps/search/?api=1&query=" +
-                            hotel.hotelName +", "+ hotel.hotelAddress
+                            hotel.HotelName +
+                            ", " +
+                            hotel.HotelAddress
                         }
                         target="_blank"
                         key={index}
                     >
-                        <div
-                            className="hover:scale-105 transition-all cursor-pointer"
-                           
-                        >
+                        <div className="hover:scale-105 transition-all cursor-pointer">
                             <img
                                 className="rounded-lg"
                                 src="/assets/img/placeholder.avif"
@@ -29,14 +28,14 @@ const Hotels = ({ trip }) => {
                             />
                             <div className="my-3">
                                 <h2 className="font-medium">
-                                    {hotel.hotelName}
+                                    {hotel.HotelName}
                                 </h2>
                                 <h2 className="text-xs text-gray-500">
-                                    📍 {hotel.hotelAddress}
+                                    📍 {hotel.HotelAddress}
                                 </h2>
                                 <h2 className="text-sm text-gray-500">
-                                    💰 ${hotel.priceRange.min}-$
-                                    {hotel.priceRange.max}
+                                    💰 ${hotel?.Price?.min}-$
+                                    {hotel?.Price?.max}
                                 </h2>
                                 <h2 className="text-sm text-gray-500">
                                     ⭐ {hotel.rating}
